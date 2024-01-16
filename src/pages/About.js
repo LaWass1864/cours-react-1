@@ -1,9 +1,15 @@
 import React from 'react';
+import Logo from '../components/Logo';
+import Navigation from '../components/Navigation';
 
 const About = () => {
     return (
         <div>
-            <h1> A propos </h1>
+            <Logo/>
+            <Navigation />
+            <div className='countries'>
+            <h1>A propos</h1>
+        </div>
             <br />
            <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil nam sed quae. Laboriosam fuga iusto dolorem expedita unde modi blanditiis nobis. Consectetur consequuntur similique illum. Ullam quas sint pariatur veniam?
            </p>
