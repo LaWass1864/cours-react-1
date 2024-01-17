@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "../components/Navigation";
 import Logo from "../components/Logo";
+import Navigation from "../components/Navigation";
 import axios from "axios";
 import Article from "../components/Article";
 
@@ -9,56 +9,52 @@ const Blog = () => {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState(false);
-  // Aller chercher dans la DB.json
 
   const getData = () => {
-    //  Simulation de serveur
     axios
-      .get("http://localhost:3004/articles")
-      .then((res) => setBlogData(res.data));
+    .get("http://localhost:3004/articles")
+    .then((res) => setBlogData(res.data))
   };
   useEffect(() => getData(), []);
-
+  
   const handleSubmit = (e) => {
-    // pour ne pas recharger la page
-    e.preventDefault();
+  e.preventDefault();
+
     if (content.length < 140) {
       setError(true);
     } else {
-      axios.post("http://localhost:3004/articles", {
-        author: "",
-        content : "",
+      axios
+      .post("http://localhost:3004/articles", {
+        author,
+        content,
         date: Date.now(),
-      });
+      })
       setError(false);
       setAuthor("");
       setContent("");
-    //   reactualiser le blogdata
       getData();
-    }
+      };
   };
+
   return (
     <div className="blog-container">
       <Logo />
       <Navigation />
-      <h1> Blog </h1>
+      <h1>Blog</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           placeholder="Nom"
-          onChange={(e) => setAuthor(e.target.value)}
-          value={author}
+         onChange={(e) => setAuthor(e.target.value)}
+         value={author}
         />
-        {/* Combien de caractere on été mis a l'interieur et renvoyer une erreur si besoin */}
         <textarea
-          // Affichage conditionnel du style des border en cas de > 140 caracteres
           style={{ border: error ? "1px solid red" : "1px solid #61dafb" }}
           placeholder="Message"
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
+          onChange={(e)=> setContent(e.target.value)}
+       value={content}
         ></textarea>
-        {/* Afichage conditionnel  */}
         {error && <p>Veuillez écrire un minimum de 140 caractères</p>}
         <input type="submit" value="Envoyer" />
       </form>
