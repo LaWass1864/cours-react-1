@@ -43,17 +43,15 @@ const Countries = () => {
         
       <ul>
         {/* Limiter la selection avec la methode Slice */}
+        
         {data
-        // On filtre
-        .filter((country) => country.continents[0].includes(selectedRadio))
-        // On trie
-        .sort((a,b) => b.population - a.population)
-        // On coupe
-        .slice(0, rangeValue)
-        //  on affiche
-        .map((country, index) => (
-       <Card  key={index} country={country} />
-       ))}
+          .filter((country) => country.continents[0].includes(selectedRadio))
+          .sort((a, b) => b.population - a.population)
+          .slice(0, rangeValue)
+          .map((country) => (
+            <Card key={country.name.common} country={country} />
+          ))}
+
       </ul>
     </div>
   );
