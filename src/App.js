@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Blog from "./pages/Blog";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
     {/* Creation des pages */}
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<About />} />
+    <Route path="/blog" element={<Blog />} />
     {/* Path='*' fonctionne si jamais l'url ne correspond à rien de déclarer au dessus */}
     <Route path="*" element={<Home />} />
   </Routes>
